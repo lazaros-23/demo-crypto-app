@@ -121,25 +121,25 @@ def draw_candle_sticks(df, intra = False):
 
 
     ## Plot crossing points
-    if intra:
-        low_value = int(df[['open','high','low','close']].min().min() - 10)
 
-        fig.add_trace(go.Scatter(
-            x = df.loc[df['above_bound'], "open_time"],
-            y = np.repeat(low_value, len(df.loc[df['above_bound'], "open_time"])),
-            marker=dict(color="green", size=4),
-            mode="markers",
-            name = 'above_boundary'
-        ))
+    low_value = int(df[['open','high','low','close']].min().min() - 10)
+
+    fig.add_trace(go.Scatter(
+        x = df.loc[df['above_bound'], "open_time"],
+        y = np.repeat(low_value, len(df.loc[df['above_bound'], "open_time"])),
+        marker=dict(color="green", size=4),
+        mode="markers",
+        name = 'above_boundary'
+    ))
 
 
-        fig.add_trace(go.Scatter(
-            x = df.loc[df['below_bound'], "open_time"],
-            y = np.repeat(low_value, len(df.loc[df['below_bound'], "open_time"])),
-            marker=dict(color="crimson", size=4),
-            mode="markers",
-            name = 'below_boundary'
-        ))
+    fig.add_trace(go.Scatter(
+        x = df.loc[df['below_bound'], "open_time"],
+        y = np.repeat(low_value, len(df.loc[df['below_bound'], "open_time"])),
+        marker=dict(color="crimson", size=4),
+        mode="markers",
+        name = 'below_boundary'
+    ))
 
     return (st.plotly_chart(fig))
 
